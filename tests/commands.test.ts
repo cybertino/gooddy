@@ -1,4 +1,10 @@
-import { parseCommandSequence, parseCommand } from '@/commands';
+import { draw, iterate } from 'radash';
+import {
+  Command,
+  parseCommandSequence,
+  parseCommand,
+  supportedCommands,
+} from '@/commands';
 
 describe('parseCommandSequence()', () => {
   it('Should be parsed correctly', () => {
@@ -11,6 +17,27 @@ describe('parseCommandSequence()', () => {
     const parseSequence = () => parseCommandSequence('n e w s');
 
     expect(parseSequence).not.toThrow();
+  });
+
+  it('Should keep correct command positions', () => {
+    // Let's create a random sequence
+    const commands = iterate(
+      10,
+      (acc) => {
+        const cmd = draw(supportedCommands);
+
+        cmd && acc.push(cmd);
+
+        return acc;
+      },
+      [] as Command[],
+    );
+
+    const sequence = commands.join(' ');
+    const result = parseCommandSequence(sequence);
+
+    // Order of the generated sequence must be kept
+    expect(result).toEqual(commands);
   });
 
   it('Should trim extra spaces', () => {
