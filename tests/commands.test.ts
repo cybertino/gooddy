@@ -26,7 +26,7 @@ describe('parseCommandSequence()', () => {
   });
 
   it('Should not allow invalid characters', () => {
-    const parseSequence = () => parseCommandSequence('na;23cx 23jgg');
+    const parseSequence = () => parseCommandSequence('N;W-E');
 
     expect(parseSequence).toThrow('Only A-z and space');
   });
