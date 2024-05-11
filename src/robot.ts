@@ -1,5 +1,6 @@
-import { Point, GridSize } from './types';
+import { Point } from './types';
 import { Command } from './commands';
+import { IWarehouse } from './warehouse';
 
 const commandMoves: Record<Command, Point> = {
   N: [0, -1],
@@ -10,7 +11,7 @@ const commandMoves: Record<Command, Point> = {
 
 export interface RobotConfig {
   startPosition: Point;
-  grid: GridSize;
+  warehouse: IWarehouse;
 }
 
 export class Robot {
@@ -18,11 +19,17 @@ export class Robot {
   // Consider to use accessors
   public position: Point;
 
-  private grid: GridSize;
+  private warehouse: IWarehouse;
 
-  constructor({ startPosition, grid }: RobotConfig) {
+  constructor({ startPosition, warehouse }: RobotConfig) {
     this.position = startPosition;
-    this.grid = grid;
+    this.warehouse = warehouse;
+
+    const isValidStart = warehouse.isPointWithinBoundaries(this.position);
+
+    if (!isValidStart) {
+      throw new Error('Starting position is outside of Warehouse boundaries');
+    }
   }
 
   execCommands(commands: Command[]) {
@@ -41,15 +48,9 @@ export class Robot {
       const axisMove = move[axis];
       const newAxisPosition = result + axisMove;
 
-      if (newAxisPosition < 0) {
-        return 0;
-      }
-
-      if (newAxisPosition > this.grid[axis] - 1) {
-        return this.grid[axis] - 1;
-      }
-
-      return newAxisPosition;
+      return this.warehouse.isWithinAxisRange(axis, newAxisPosition)
+        ? newAxisPosition
+        : result;
     }, axisPosition);
   }
 }

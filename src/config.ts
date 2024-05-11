@@ -1,3 +1,3 @@
-import { GridSize } from './types';
+import { WarehouseDimensions } from './warehouse';
 
-export const grid: GridSize = [10, 10];
+export const grid: WarehouseDimensions = [10, 10];

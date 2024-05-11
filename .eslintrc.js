@@ -5,6 +5,10 @@ module.exports = {
   env: {
     node: true,
   },
+  rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn'],
+  },
   overrides: [
     {
       files: ['tests/**/*'],
