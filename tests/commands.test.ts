@@ -1,4 +1,4 @@
-import { parseCommandSequence, parseCommand } from '../src/commands';
+import { parseCommandSequence, parseCommand } from '@/commands';
 
 describe('parseCommandSequence()', () => {
   it('Should be parsed correctly', () => {

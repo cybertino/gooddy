@@ -25,22 +25,31 @@ export class Robot {
     this.grid = grid;
   }
 
-  execCommand(command: Command) {
-    const move = commandMoves[command];
+  execCommands(commands: Command[]) {
+    this.position = this.position.map((axisPosition, axis) =>
+      this.aggregateAxisMoves(commands, axisPosition, axis),
+    ) as Point;
+  }
 
-    return this.position.map((axisPosition, axis) => {
+  private aggregateAxisMoves(
+    commands: Command[],
+    axisPosition: number,
+    axis: number,
+  ) {
+    return commands.reduce((result, cmd) => {
+      const move = commandMoves[cmd];
       const axisMove = move[axis];
-      const newAxisPosition = axisPosition + axisMove;
+      const newAxisPosition = result + axisMove;
 
       if (newAxisPosition < 0) {
         return 0;
       }
 
-      if (newAxisPosition > this.grid[axis]) {
-        return this.grid[axis];
+      if (newAxisPosition > this.grid[axis] - 1) {
+        return this.grid[axis] - 1;
       }
 
       return newAxisPosition;
-    });
+    }, axisPosition);
   }
 }
