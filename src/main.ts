@@ -6,9 +6,10 @@ import chalk from 'chalk';
 import { parseCommandSequence } from './commands';
 import { Warehouse } from './warehouse';
 import { Robot } from './robot';
+import { warehouseDimensions, robotStartPosition } from './config';
 
-const warehouse = new Warehouse({ dimensions: [10, 10] });
-const robot = new Robot({ startPosition: [0, 0], warehouse });
+const warehouse = new Warehouse({ dimensions: warehouseDimensions });
+const robot = new Robot({ startPosition: robotStartPosition, warehouse });
 
 const readline = Readline.createInterface({ input: stdin, output: stdout });
 
