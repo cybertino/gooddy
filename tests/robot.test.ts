@@ -68,4 +68,31 @@ describe('Robot', () => {
     robot.execCommands(['S', 'E', 'E', 'S']);
     expect(robot.position).toEqual(startPosition);
   });
+
+  it('Should take set correct position after commands are executed', () => {
+    const startPosition: Point = [2, 2];
+    const warehouse = new Warehouse({ dimensions: [5, 5] });
+
+    const robot = new Robot({
+      startPosition,
+      warehouse,
+    });
+
+    robot.execCommands([
+      'W',
+      'W',
+      'N',
+      'N',
+      'W',
+      'E',
+      'N',
+      'S',
+      'E',
+      'S',
+      'E',
+      'S',
+    ]);
+
+    expect(robot.position).toEqual([3, 3]);
+  });
 });

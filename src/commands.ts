@@ -2,7 +2,8 @@ import { trim } from 'radash';
 
 export type Command = 'N' | 'S' | 'E' | 'W';
 
-export const supportedCommands: Command[] = ['N', 'S', 'E', 'W'];
+export const movementCommands: Command[] = ['N', 'S', 'E', 'W'];
+export const supportedCommands: Command[] = [...movementCommands];
 
 export function parseCommandSequence(sequence: string) {
   if (!sequence) {

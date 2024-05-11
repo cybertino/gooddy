@@ -33,24 +33,19 @@ export class Robot {
   }
 
   execCommands(commands: Command[]) {
-    this.position = this.position.map((axisPosition, axis) =>
-      this.aggregateAxisMoves(commands, axisPosition, axis),
-    ) as Point;
+    commands.forEach((cmd) => this.execOneCommand(cmd));
   }
 
-  private aggregateAxisMoves(
-    commands: Command[],
-    axisPosition: number,
-    axis: number,
-  ) {
-    return commands.reduce((result, cmd) => {
-      const move = commandMoves[cmd];
+  private execOneCommand(command: Command) {
+    const move = commandMoves[command];
+
+    this.position = this.position.map((axisPosition, axis) => {
       const axisMove = move[axis];
-      const newAxisPosition = result + axisMove;
+      const newAxisPosition = axisPosition + axisMove;
 
       return this.warehouse.isWithinAxisRange(axis, newAxisPosition)
         ? newAxisPosition
-        : result;
-    }, axisPosition);
+        : axisPosition;
+    }) as Point;
   }
 }
