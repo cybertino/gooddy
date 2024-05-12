@@ -1,6 +1,5 @@
-import { Robot } from '@/robot';
 import { Point } from '@/types';
-import { Warehouse } from '@/warehouse';
+import { Warehouse, Robot } from '@/core';
 
 const defaultStart: Point = [5, 5];
 const defaultWarehouse = new Warehouse({

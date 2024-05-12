@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-import { WarehouseDimensions } from './warehouse';
+import { WarehouseDimensions } from './core/warehouse';
 import { Point } from './types';
 
 const {

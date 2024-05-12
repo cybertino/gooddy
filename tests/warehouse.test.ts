@@ -1,4 +1,4 @@
-import { Warehouse, WarehouseDimensions } from '@/warehouse';
+import { Warehouse, WarehouseDimensions } from '@/core';
 
 const defaultDimensions: WarehouseDimensions = [10, 10];
 

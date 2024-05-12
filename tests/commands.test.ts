@@ -4,7 +4,7 @@ import {
   parseCommandSequence,
   parseCommand,
   supportedCommands,
-} from '@/commands';
+} from '@/core';
 
 describe('parseCommandSequence()', () => {
   it('Should be parsed correctly', () => {
