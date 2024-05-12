@@ -3,8 +3,7 @@ import { stdin, stdout } from 'node:process';
 import { emojify } from 'node-emoji';
 import chalk from 'chalk';
 
-import { parseCommandSequence } from '../core/commands';
-import { IRobot } from '../core/robot';
+import { parseCommandSequence, IRobot } from '../core';
 
 export function launchConsoleApp(robot: IRobot) {
   const readline = Readline.createInterface({ input: stdin, output: stdout });
