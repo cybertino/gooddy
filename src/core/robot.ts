@@ -2,6 +2,8 @@ import { Point } from '../types';
 import { Command } from './commands';
 import { IWarehouse } from './warehouse';
 
+// Dictionary that defines increments
+// for Robot position per axis
 const commandMoves: Record<Command, Point> = {
   N: [0, -1],
   S: [0, 1],
@@ -37,13 +39,19 @@ export class Robot implements IRobot {
     }
   }
 
+  /**
+   * Executes specified commands
+   * @param {Command[]} commands Array of commands to execute, e.g. ['N', 'W', 'E', 'S']
+   */
   execCommands(commands: Command[]) {
     commands.forEach((cmd) => this.execSingleCommand(cmd));
   }
 
+  // Entry point to process each command
   private execSingleCommand(command: Command) {
     const move = commandMoves[command];
 
+    // Let's iterate through each axis and apply increments
     this.position = this.position.map((axisPosition, axis) => {
       const axisMove = move[axis];
       const newAxisPosition = axisPosition + axisMove;

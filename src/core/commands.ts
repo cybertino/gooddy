@@ -5,7 +5,12 @@ export type Command = 'N' | 'S' | 'E' | 'W';
 export const movementCommands: Command[] = ['N', 'S', 'E', 'W'];
 export const supportedCommands: Command[] = [...movementCommands];
 
-export function parseCommandSequence(sequence: string) {
+/**
+ * Parses a string of command sequence
+ * @param {string} sequence String of command sequence e.g. 'N E W S'
+ * @returns {Command[]} Array of parsed commands
+ */
+export function parseCommandSequence(sequence: string): Command[] {
   if (!sequence) {
     throw new Error('Command sequence is empty');
   }
@@ -22,6 +27,11 @@ export function parseCommandSequence(sequence: string) {
     .map((cmd) => parseCommand(trim(cmd)));
 }
 
+/**
+ * Checks that command is supported and normalises it to uppercase
+ * @param {string} command Command code
+ * @returns {Command} Normalised command code
+ */
 export function parseCommand(command: string): Command {
   const normalized = command.toUpperCase();
 
