@@ -66,10 +66,10 @@ pnpm run cli S E E S N W
 ### Dev mode
 
 You can also execute project in development mode which reloads it after each change that is made. 
-By default it uses `Console App` but you can specify another execution type as a parameter.
+By default it is launched as `Console App` but you can specify another execution type as a parameter.
 
 ```bash
-pnpm run dev [<exec_type>]
+pnpm run dev [<exec_type>] [<params>]
 ```
 
 ## Tests
