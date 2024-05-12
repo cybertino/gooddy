@@ -14,7 +14,12 @@ export interface RobotConfig {
   warehouse: IWarehouse;
 }
 
-export class Robot {
+export interface IRobot {
+  get position(): Point;
+  execCommands(commands: Command[]): void;
+}
+
+export class Robot implements IRobot {
   // Perhaps should be public only for read
   // Consider to use accessors
   public position: Point;
@@ -33,10 +38,10 @@ export class Robot {
   }
 
   execCommands(commands: Command[]) {
-    commands.forEach((cmd) => this.execOneCommand(cmd));
+    commands.forEach((cmd) => this.execSingleCommand(cmd));
   }
 
-  private execOneCommand(command: Command) {
+  private execSingleCommand(command: Command) {
     const move = commandMoves[command];
 
     this.position = this.position.map((axisPosition, axis) => {
