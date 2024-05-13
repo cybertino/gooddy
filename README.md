@@ -1,6 +1,13 @@
 # Gooddy the Warehouse Robot
 
-Meet Gooddy - a robot that manages goods in the warehouse.
+Meet Gooddy - a robot that manages goods in the warehouse which has a grid aligned along North-South and East-West axes.
+
+Goddy is able to move within the Warehouse by executing a series of commands:
+
+- `N`: move 1 cell to North
+- `S`: move 1 cell to South
+- `E`: move 1 cell to East
+- `W`: move 1 cell to West
 
 ## Project structure
 
@@ -16,6 +23,7 @@ Logically the project is split into few units:
 - Error literals could be returned by functions and reused in tests. This way if error text changes, there is no need to change all the places it is used in.
 - Custom error types could be introduced so they can be separated from unexpected errors and better handled by an app.
 - CLI app is basic but potentially can accept warehouse dimensions and robot starting position to override default ones or provided by env vars.
+- There could be also HTTP server implementation that could control the Robot remotely.
 - Robot's position could be represented as a grid made from ASCII characters. Something like this:
 
 ```
